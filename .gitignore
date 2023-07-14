@@ -14,3 +14,7 @@
 /01_basic/src/setupTests.js
 /01_basic/public/robots.txt
 /01_basic/.idea/workspace.xml
+/node_modules/
+/public/
+/package.json
+/package-lock.json
