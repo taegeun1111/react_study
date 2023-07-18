@@ -11,11 +11,19 @@ const Login = (props) => {
     const [passwordIsValid, setPasswordIsValid] = useState();
     const [formIsValid, setFormIsValid] = useState(false);
 
-    useEffect(()=>{
-        setFormIsValid(
-            enteredEmail.target.value.includes('@') && enteredPassword.trim().length > 6
-        );
-    },[enteredEmail,enteredPassword])
+    useEffect(() => {
+        const identifier = setTimeout(() => {
+            setFormIsValid(
+                enteredEmail.includes('@') && enteredPassword.trim().length > 6
+            );
+        }, 500);
+
+
+        //클린업 함수
+        return () => {
+            clearTimeout(identifier);
+        };
+    }, [enteredEmail, enteredPassword])
 
     const emailChangeHandler = (event) => {
         setEnteredEmail(event.target.value);
