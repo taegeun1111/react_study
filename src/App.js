@@ -1,37 +1,45 @@
-import React, {useEffect, useState} from 'react';
-
-import Login from './components/Login/Login';
-import Home from './components/Home/Home';
-import MainHeader from './components/MainHeader/MainHeader';
+import React, {useReducer, useState} from 'react';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // reducer - state를 업데이트 하는 역할
+    // dispatch - state 업데이트를 위한 요구
+    // action - 요구의 내용
+    const ACTION_TYPES={
+        deposit : 'deposit',
+        withdraw : 'withdraw'
+    }
 
-    useEffect(() => {
-        const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
-        if (storedUserLoggedInInformation === '1') {
-            setIsLoggedIn(true);
+    const reducer = (state, action) => {
+        switch (action.type){
+            case ACTION_TYPES.deposit :
+                return state + action.payload
+            case ACTION_TYPES.withdraw :
+                return state - action.payload
+            default :
+                return state
         }
-    }, []);
-
-    const loginHandler = (email, password) => {
-        localStorage.setItem('isLoggedIn', '1');
-        setIsLoggedIn(true);
     };
 
-    const logoutHandler = () => {
-        localStorage.removeItem('isLoggedIn');
-        setIsLoggedIn(false);
-    };
+   const [number, setNumber]  = useState(0);
+   const [money, dispatch] = useReducer(reducer,0);
 
     return (
-        <React.Fragment>
-            <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler}/>
-            <main>
-                {!isLoggedIn && <Login onLogin={loginHandler}/>}
-                {isLoggedIn && <Home onLogout={logoutHandler}/>}
-            </main>
-        </React.Fragment>
+        <div>
+            <h2>useReducer 은행에 오신것을 환영합니다.</h2>
+            <p>잔고 : {money}원</p>
+            <input
+                type={"number"}
+                value={number}
+                onChange={(e)=>setNumber(parseInt(e.target.value))}
+                step={"1000"}
+            />
+            <button onClick={()=>{
+                dispatch({type:ACTION_TYPES.deposit, payload:number});
+            }}>예금</button>
+            <button onClick={()=>{
+                dispatch({type:ACTION_TYPES.withdraw, payload:number});
+            }}>출금</button>
+        </div>
     );
 }
 
