@@ -40,19 +40,22 @@ const Login = (props) => {
         console.log("enteredEmail")
 
         return () =>{}
-    },[enteredEmail])
+    },[])
+
+    const {isValid : emailIsValid} = emailState;
+    const {isValid : passwordIsValid} = passwordState;
 
     useEffect(() => {
         const identifier = setTimeout(() => {
             setFormIsValid(
-                enteredEmail.includes('@') && enteredPassword.trim().length > 6
+                emailIsValid && passwordIsValid
             );
         }, 500);
           //클린업 함수
         return () => {
             clearTimeout(identifier);
         };
-    }, [enteredEmail, enteredPassword])
+    }, [emailIsValid, passwordIsValid])
 
 
     const emailChangeHandler = (event) => {
