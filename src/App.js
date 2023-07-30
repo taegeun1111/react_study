@@ -1,32 +1,38 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState} from 'react';
 
-import Button from './components/UI/Button/Button';
-import DemoOutput from './components/Demo/DemoOutput';
+import MoviesList from './components/MoviesList';
 import './App.css';
 
 function App() {
-  const [showParagraph, setShowParagraph] = useState(false);
-  const [allowToggle, setAllowToggle] = useState(false);
+  const [movies, setMovies] = useState([]);
 
-  console.log('APP RUNNING');
+  async function fetchMoviesHandler() {
+    const response = await fetch('https://swapi.dev/api/films/')
+    const data = await response.json();
 
-  const toggleParagraphHandler = useCallback(() => {
-    if (allowToggle) {
-      setShowParagraph((prevShowParagraph) => !prevShowParagraph);
-    }
-  }, [allowToggle]);
+    console.log(data)
+    const transformedMovies = data.results.map((movieData) => {
+      return {
+        id: movieData.episode_id,
+        title: movieData.title,
+        openingText: movieData.opening_crawl,
+        releaseDate: movieData.release_date,
+      };
+    });
+    // console.log(transformedMovies)
+    setMovies(transformedMovies);
 
-  const toggleHandler = () => {
-    setAllowToggle(true);
   }
 
   return (
-    <div className="app">
-      <h1>Hi there!</h1>
-      <DemoOutput show={false}/>
-      <Button onClick={toggleHandler}>Allow Toggle</Button>
-      <Button onClick={toggleParagraphHandler}>Toggle Paragraph!</Button>
-    </div>
+    <React.Fragment>
+      <section>
+        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
+      </section>
+      <section>
+        <MoviesList movies={movies}/>
+      </section>
+    </React.Fragment>
   );
 }
 
