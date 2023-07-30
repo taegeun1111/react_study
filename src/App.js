@@ -1,21 +1,33 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState, useCallback} from 'react';
 
-import Login from './components/Login/Login';
-import Home from './components/Home/Home';
-import MainHeader from './components/MainHeader/MainHeader';
-import AuthContext from "./components/store/auth-context";
+import Button from './components/UI/Button/Button';
+import DemoOutput from './components/Demo/DemoOutput';
+import './App.css';
 
 function App() {
-    const ctx = useContext(AuthContext);
-    return (
-        <>
-            <MainHeader/>
-            <main>
-                {!ctx.isLoggedIn && <Login/>}
-                {ctx.isLoggedIn && <Home/>}
-            </main>
-        </>
-    );
+  const [showParagraph, setShowParagraph] = useState(false);
+  const [allowToggle, setAllowToggle] = useState(false);
+
+  console.log('APP RUNNING');
+
+  const toggleParagraphHandler = useCallback(() => {
+    if (allowToggle) {
+      setShowParagraph((prevShowParagraph) => !prevShowParagraph);
+    }
+  }, [allowToggle]);
+
+  const toggleHandler = () => {
+    setAllowToggle(true);
+  }
+
+  return (
+    <div className="app">
+      <h1>Hi there!</h1>
+      <DemoOutput show={false}/>
+      <Button onClick={toggleHandler}>Allow Toggle</Button>
+      <Button onClick={toggleParagraphHandler}>Toggle Paragraph!</Button>
+    </div>
+  );
 }
 
 export default App;
