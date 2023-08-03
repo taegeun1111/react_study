@@ -1,21 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
-import Login from './components/Login/Login';
-import Home from './components/Home/Home';
-import MainHeader from './components/MainHeader/MainHeader';
-import AuthContext from "./components/store/auth-context";
+import Page from "./components/Page";
 
 function App() {
-    const ctx = useContext(AuthContext);
+    const [isDark, setIsDark] = useState(false);
+
     return (
-        <>
-            <MainHeader/>
-            <main>
-                {!ctx.isLoggedIn && <Login/>}
-                {ctx.isLoggedIn && <Home/>}
-            </main>
-        </>
-    );
+      <Page isDark={isDark} setIsDark={setIsDark}/>
+    )
 }
 
 export default App;
