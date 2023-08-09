@@ -1,21 +1,24 @@
-/01_basic/.idea/aws.xml
-/01_basic/src/App.test.js
-/01_basic/.idea/01_basic.iml
-/01_basic/public/favicon.ico
-/01_basic/public/logo192.png
-/01_basic/src/logo.svg
-/01_basic/public/logo512.png
-/01_basic/public/manifest.json
-/01_basic/package.json
-/01_basic/.idea/misc.xml
-/README.md
-/01_basic/.idea/modules.xml
-/01_basic/package-lock.json
-/01_basic/src/setupTests.js
-/01_basic/public/robots.txt
-/01_basic/.idea/workspace.xml
-/node_modules/
-/public/
-/package.json
-/package-lock.json
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 /.idea/
