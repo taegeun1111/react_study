@@ -2,6 +2,7 @@ import { useState } from "react";
 import NewTodo from "./component/NewTodo";
 import Todos from "./component/Todos";
 import Todo from "./models/todo";
+
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
@@ -13,10 +14,16 @@ function App() {
     });
   };
 
+  const removeHandler = (removeId : string) => {
+    const updatedTodo = todos.filter((list) => list.id !== removeId)
+
+    setTodos(updatedTodo);
+  }
+
   return (
     <>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onRemoveTodo={removeHandler} />
     </>
   );
 }
