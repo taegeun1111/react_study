@@ -14,13 +14,10 @@ const SmallButton = styled(LargeButton)`
 color: bisque;
 `
 const PrimaryButton = styled.button`
-  color: ${(props) => {
-    if (props.primary){
-      return 'red'
-    }
-    return 'blue'
-  }};
+  color: ${props => props.primary ? 'white' : 'gray'};
+  background-color : ${props => props.primary ? 'blue' : 'gray'};
 `
+
 
 function App() {
   return (
