@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, {css} from "styled-components"
 import {useState} from "react";
 
 const Wrap = styled.div`
@@ -29,5 +29,19 @@ function App() {
     </Wrap>
   )
 }
+
+const flexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const FlexBox = styled.div`
+  ${flexCenter}
+`;
+
+console.log(FlexBox)
+
+
 
 export default App;
