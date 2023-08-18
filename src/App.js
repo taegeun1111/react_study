@@ -1,33 +1,32 @@
 import styled from "styled-components"
+import {useState} from "react";
 
-const SimpleButton = styled.button`
-  background: blue;
-  color: white;
-  border: none;
-`;
-
-const LargeButton = styled(SimpleButton)`
-  font-size: 50px;
+const Wrap = styled.div`
+  background: ${({active}) => {
+    if (active) {
+      return "white";
+    }
+    return "#eee";
+  }};
+  color: black;
 `
-
-const SmallButton = styled(LargeButton)`
-color: bisque;
+const Button = styled.button`
+  width: 200px;
+  padding: 30px;
 `
-const PrimaryButton = styled.button`
-  color: ${props => props.primary ? 'white' : 'gray'};
-  background-color : ${props => props.primary ? 'blue' : 'gray'};
+// 상속
+const NewButton = styled(Button)`
+  color: ${props => props.color || "red"};
 `
-
 
 function App() {
+  const [email, setEmail] = useState("");
+
   return (
-    <>
-      <SimpleButton>Simple</SimpleButton>
-      <LargeButton>Large</LargeButton>
-      <SmallButton>Small</SmallButton>
-      <PrimaryButton>Normal</PrimaryButton>
-      <PrimaryButton primary>Primary</PrimaryButton>
-    </>
+    <Wrap active={email.length}>
+      <Button>Hello</Button>
+      <NewButton color={"blue"}>New Button</NewButton>
+    </Wrap>
   )
 }
 
