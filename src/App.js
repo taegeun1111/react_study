@@ -1,37 +1,35 @@
-import styled, {createGlobalStyle, css} from "styled-components"
+import styled, {createGlobalStyle, ThemeProvider} from "styled-components";
+import {theme} from "./theme";
 
-export const ContentLayout = styled.div`
-  display: block;
+
+const GlobalStyle = createGlobalStyle`
+  body{
+    margin: 0px;
+    padding: 0px;
+  }
+`;
+
+const Container = styled.div`
   height: 100%;
-  max-width: 100%;
-  margin-left : auto;
-  margin-right: auto;
+  width: 100vh;
 `
-
-export const FeatureTitle = styled.div`
-  font-family: AppleSystemUIFont,sans-serif;
-  font-size: 58px;
-  width: 90%;
+const Button = styled.button`
+  border-radius: 30px;
+  padding: 25px 15px;
+  background-color: ${props => props.theme.Soft_Pink};
 `
-
-
 
 function App() {
   return (
-    <RayOut>
-      <Title bold="600">
-        Sticky
-      </Title>
-    </RayOut>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <GlobalStyle />
+        <Button>Hello</Button>
+      </Container>
+    </ThemeProvider>
   )
 }
 
-const Title = styled(FeatureTitle)`
-  background-color: aquamarine;
-  font-weight: ${props => props.bold};
-`
-const RayOut =styled(ContentLayout)`
-  background-color: yellow;
-`
+
 
 export default App;
