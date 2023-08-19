@@ -1,31 +1,37 @@
 import styled, {createGlobalStyle, css} from "styled-components"
 
-const RingVariant = (radius, stroke = 10) => css`
-  position: absolute;
-  border-radius: 50%;
-  height: ${radius *2}px;
-  width: ${radius * 2}px;
-  border: ${stroke}px solid rgba(0,0,0,0.5);
+export const ContentLayout = styled.div`
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  margin-left : auto;
+  margin-right: auto;
 `
 
-const ShapeRing = styled.div`
-  ${RingVariant(40,15)};
-  top: 30%;
-  left: 0;
-  background-color: aquamarine;
+export const FeatureTitle = styled.div`
+  font-family: AppleSystemUIFont,sans-serif;
+  font-size: 58px;
+  width: 90%;
 `
 
 
 
 function App() {
   return (
-    <>
-      <ShapeRing>
+    <RayOut>
+      <Title bold="600">
         Sticky
-      </ShapeRing>
-    </>
+      </Title>
+    </RayOut>
   )
 }
 
+const Title = styled(FeatureTitle)`
+  background-color: aquamarine;
+  font-weight: ${props => props.bold};
+`
+const RayOut =styled(ContentLayout)`
+  background-color: yellow;
+`
 
 export default App;
