@@ -1,6 +1,6 @@
 import { useState } from "react";
-import NewTodo from "./component/NewTodo";
-import Todos from "./component/Todos";
+import NewTodo from "./components/NewTodo";
+import Todos from "./components/Todos";
 import Todo from "./models/todo";
 import TodosContextProvider from "./store/todos-context";
 
