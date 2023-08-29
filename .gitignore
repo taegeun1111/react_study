@@ -16,8 +16,7 @@
 /01_basic/.idea/workspace.xml
 /node_modules/
 /public/
-/package.json
-/package-lock.json
 /.idea/
 /.idea/
 /backend/node_modules/
+.DS_Store
